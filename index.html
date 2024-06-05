@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message for Kavuu</title>
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .flowers {
+            width: 30%;
+            cursor: pointer;
+        }
+        .letter-icon {
+            font-size: 50px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <img src="https://images.pexels.com/photos/15239/flower-roses-red-roses-bloom.jpg?cs=srgb&dl=pexels-pixabay-15239.jpg&fm=jpg&_gl=1*hjvamw*_ga*NTQyNjA1NDk5LjE3MTc2MDM1NTM.*_ga_8JE65Q40S6*MTcxNzYwMzU1Mi4xLjEuMTcxNzYwMzU1NS4wLjAuMA.." alt="Bouquet of Roses and Lilacs" class="flowers" id="flowers">
+        <div id="name-prompt" class="hidden">
+            <p>Please enter your name:</p>
+            <input type="text" id="name-input">
+            <button onclick="showLetterIcon()">Continue</button>
+        </div>
+        <div id="letter-icon" class="hidden" onclick="showMessage()">
+            ✉️
+        </div>
+        <div id="message" class="hidden message">
+            <p id="personal-message"></p>
+            <p>Do you forgive Mr. Wendo?</p>
+            <button onclick="showResponse('yes')">Yes</button>
+            <button onclick="showResponse('no')">No</button>
+        </div>
+        <div id="response" class="hidden message"></div>
+    </div>
+    <script>
+        document.getElementById('flowers').addEventListener('click', () => {
+            document.getElementById('name-prompt').classList.remove('hidden');
+        });
+
+        function showLetterIcon() {
+            const nameInput = document.getElementById('name-input').value;
+            if (nameInput.trim() !== "") {
+                document.getElementById('name-prompt').classList.add('hidden');
+                document.getElementById('letter-icon').classList.remove('hidden');
+            } else {
+                alert("Please enter a name.");
+            }
+        }
+
+        function showMessage() {
+            document.getElementById('letter-icon').classList.add('hidden');
+            const personalMessage = `
+                Hello my love, if you're seeing this it means you're disappointed right now and I understand.
+                I am sorry we were not able to meet up today. I know that you know that I would want nothing 
+                more than meeting up with you today. Seeing that smile of yours makes my day every single time 
+                and it pains me when you're not near me. As much as I wanted to meet today it will not be possible 
+                but I will try to make it up to you. I love you Kavuu.
+            `;
+            document.getElementById('personal-message').innerText = personalMessage;
+            document.getElementById('message').classList.remove('hidden');
+        }
+
+        function showResponse(answer) {
+            if (answer === 'yes') {
+                document.getElementById('message').classList.add('hidden');
+                document.getElementById('response').classList.remove('hidden');
+                document.getElementById('response').innerHTML = '😊';
+            } else {
+                document.getElementById('response').classList.add('hidden');
+                document.getElementById('message').classList.remove('hidden');
+                alert('Hauna choice lazima uniforgive');
+            }
+        }
+    </script>
+</body>
+</html>
